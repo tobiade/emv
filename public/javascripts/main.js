@@ -2,7 +2,7 @@ jQuery(document).ready(() => {
 
     let urlname = window.location.href;
     const country = extractCountryFromURL(urlname);
-    let urlNew = 'https://ec2-35-177-19-196.eu-west-2.compute.amazonaws.com:3000/api/macrodata/' + country;
+    let urlNew = 'http://ec2-35-177-19-196.eu-west-2.compute.amazonaws.com:3000/api/macrodata/' + country;
 
     jQuery.getJSON(urlNew, (data) => {
         let processedData = preProcessData(data);

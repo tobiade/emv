@@ -9,7 +9,10 @@ const router = express.Router();
 router.get('/', (request, response) => {
         /*return*/ MacroData
             .all()
-            .then(allMacroData => response.status(200).send(allMacroData))
+            .then(allMacroData => {
+                response.setHeader('Access-Control-Allow-Origin', '*');
+                response.status(200).send(allMacroData)
+            })
             .catch(error => response.status(400).send(error))
     }
 );
@@ -21,7 +24,10 @@ router.get('/:country', (request,response) => {
         .trim();
     MacroData
         .findAll({where: {country: countryRegularForm}})
-        .then(macroData => response.status(200).send(macroData))
+        .then(macroData => {
+            response.setHeader('Access-Control-Allow-Origin', '*');
+            response.status(200).send(macroData)
+        })
         .catch(error => response.status(400).send(error));
 });
 router.get('/:country/:year', (request,response) => {
@@ -32,7 +38,10 @@ router.get('/:country/:year', (request,response) => {
         .trim();
     MacroData
         .findAll({where: {country: countryRegularForm, year: request.params.year}})
-        .then(macroData => response.status(200).send(macroData))
+        .then(macroData => {
+            response.setHeader('Access-Control-Allow-Origin', '*');
+            response.status(200).send(macroData)
+        })
         .catch(error => response.status(400).send(error));
 });
 module.exports = router;
